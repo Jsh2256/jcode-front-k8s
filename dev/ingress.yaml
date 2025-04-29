@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jcode-front-dev-ingress
+  namespace: dev
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - jcode2.jbnu.ac.kr
+      secretName: jbnu
+  rules:
+    - host: jcode2.jbnu.ac.kr
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: jcode-front-dev-svc
+              port:
+                number: 80
