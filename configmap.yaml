@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jcode-front-config
+data:
+  REACT_APP_API_URL: "https://jcode.jbnu.ac.kr"
+  REACT_APP_KEYCLOAK_URL: "https://key.jbnu.ac.kr"
+  REACT_APP_CLIENT_ID: "jcodehub"
+  REACT_APP_SCOPE: "openid profile email"
+  REACT_APP_REDIRECT_URI: "https://jcode.jbnu.ac.kr/callback"
+  REACT_APP_REALM: "JEduTools"

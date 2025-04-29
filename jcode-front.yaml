@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jcode-front
+  namespace: watcher
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jcode-front
+  template:
+    metadata:
+      labels:
+        app: jcode-front
+    spec:
+      imagePullSecrets:
+        - name: harbor-registry-secret
+      containers:
+        - name: react
+          image: harbor.jbnu.ac.kr/jsh2256/jcode-front:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 500m
+              memory: 2Gi
+            limits:
+              memory: 10Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jcode-front-svc
+  namespace: watcher
+spec:
+  selector:
+    app: jcode-front
+  ports:
+    - name: front-metrics
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
