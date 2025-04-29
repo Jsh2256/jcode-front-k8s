@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jcode-front
+  name: jcode-front-dev
   namespace: dev
 spec:
   replicas: 1
@@ -14,10 +14,10 @@ spec:
         app: jcode-front-dev
     spec:
       imagePullSecrets:
-        - name: harbor-registry-secret
+        - name: jcode-front-dev-habor-registry-secret
       containers:
         - name: react
-          image: harbor.jbnu.ac.kr/jsh2256/jcode-front:latest
+          image: harbor.jbnu.ac.kr/jsh2256/jcode-front-dev:latest
           ports:
             - containerPort: 80
           resources:
